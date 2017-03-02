@@ -1,0 +1,150 @@
+<%= render "navbar" %>
+<%= form_for(@request) do |a| %>
+
+<div class="container bg-primary" align="center" style="margin-top: 5%;">
+<table class="rform" align="center">
+  <thead class="rform">
+    <tr>
+      <th class="b">
+        <h1>Request Form</h1>
+      </th>
+    </tr>
+  </thead>
+  <tbody class="rform">
+    <tr>
+      <td class="b col-sm-6">
+        Request for: <%= a.radio_button :request, 'good moral' %> good moral
+                     <%= a.radio_button :request, 'residency' %> residency
+                     <%= a.radio_button :request, 'loan app.' %> loap app.
+                     <%= a.radio_button :request, 'indigency' %> indigency
+                     <%= a.radio_button :request, 'cedula' %> cedula
+      </td>
+    </tr>
+    <tr>
+      <td class="b">
+        <div class="row">
+          <div class="col-sm-2">First name: <%= a.text_field :first_name, placeholder: 'first name', class: "form-control input-sm" %></div>
+          <div class="col-sm-2">Middle name: <%= a.text_field :middle_name, placeholder: 'middle name', class: "form-control input-sm" %></div>
+          <div class="col-sm-2">Last name: <%= a.text_field :last_name, placeholder: 'last name', class: "form-control input-sm" %></div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="b">
+        <div class="row">
+          <div class="col-sm-2">Nickname: <%= a.text_field :nickname, placeholder: 'nickname', class: "form-control input-sm" %></div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="b">
+        <br>Residence type: <%= a.radio_button :residence_type, 'permanent' %> permanentl
+                        <%= a.radio_button :residence_type, 'boarder' %> boarder
+                        <%= a.radio_button :residence_type, 'transient' %> transient
+      </td>
+    </tr>
+    <tr>
+      <td class="b">
+        <br><%= "\t\t" %> If boarder, please indicate the owner of the boarding house/apartment:
+        <div class="row">
+          <div class="col-sm-3">
+          <%= a.text_field :bhouse_owner, placeholder: 'Owner', class: "form-control input-sm" %></div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="b">
+        <div class="row">
+          <div class="col-sm-6">
+            Current address:
+            <%= a.text_field :address, placeholder: 'address', class: "form-control input-sm" %>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="b">
+        <div class="row">
+          <div class="col-sm-2">Contact no: <%= a.text_field :contact_no, placeholder: 'contact number', class: "form-control input-sm" %></div>
+          <div class="col-sm-2">Gender: <%= a.text_field :gender, placeholder: 'gender', class: "form-control input-sm" %></div>
+          <div class="col-sm-2">Status: <%= a.text_field :status, placeholder: 'status', class: "form-control input-sm" %></div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="b">
+            <div class="container">
+              <div class="row">
+                  <div class='col-sm-3'>Birth date:
+                      <div class="form-group">
+                          <div class='input-group date' id='datetimepicker1'>
+                              <input type='text' class="form-control" />
+                              <span class="input-group-addon">
+                                  <span class="glyphicon glyphicon-calendar"></span>
+                              </span>
+                          </div>
+                      </div>
+                  </div>
+                  <script type="text/javascript">
+                      $(function () {
+                          $('#datetimepicker1').datetimepicker();
+                      });
+                  </script>
+                </div>
+              </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="b">
+        <div class="row">
+          <div class="col-sm-2">
+              Birth place: <%= a.text_field :birth_place, placeholder: 'birth place', class: "form-control input-sm" %>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="b">
+        <div class="row">
+          <div class="col-sm-2">Occupation: <%= a.text_field :occupation, placeholder: 'occupation', class: "form-control input-sm" %></div>
+          <div class="col-sm-2">Monthly income: <%= a.text_field :monthly_income, placeholder: 'monthly incaome', class: "form-control input-sm" %></div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="b">
+        <div class="row">
+          <div class="col-sm-2">Purpose: <%= a.text_field :purpose, placeholder: 'purpose', class: "form-control input-sm" %></div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="b">In case of emergency:</td>
+    </tr>
+    <tr>
+      <td class="b"><div class="row">
+        <div class="col-sm-3">Contact person: <%= a.text_field :emergency_contact_person, placeholder: 'contact person', class: "form-control input-sm" %></div>
+      </div>
+        </td>
+    </tr>
+    <tr>
+      <td class="b">
+        <div class="row">
+          <div class="col-sm-3">
+            Relationship: <%= a.text_field :relationship, placeholder: 'relationship', class: "form-control input-sm" %>
+          </div>
+          <div class="col-sm-3">
+            Contact number: <%= a.text_field :contact_no_2, placeholder: 'contact number', class: "form-control input-sm" %>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="b"><div class="sbt"><%= a.submit 'Submit', class: "btn btn-default" %></div></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<% end %>
+
+<%= render "footer" %>

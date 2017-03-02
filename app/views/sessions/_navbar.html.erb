@@ -1,0 +1,29 @@
+<table>
+  <tr>
+    <td>
+      <nav class="navbar navbar-inverse navbar-fixed-top " role="navigation">
+      	<div class="container-fluid">
+        	<ul class="nav navbar-nav navbar-fixed-top">
+          	<li class="<%= 'active' if params[:action] == 'requests' %>"><%= link_to "HOME", "/requests.html" %></li>
+          	<li class="<%= 'active' if params[:action] == 'officials' %>"><%= link_to "OFFICIALS", "/requests/officials" %></li>
+          	<li class="<%= 'active' if params[:action] == 'transactions' %>"><%= link_to "TRANSACTIONS", "" %></li>
+            <li class="<%= 'active' if params[:action] == 'programs' %>"><%= link_to "PROGRAMS", "" %></li>
+            <li class="<%= 'active' if params[:action] == 'activities' %>"><%= link_to "ACTIVITIES", "" %></li>
+            <li><h3 class="text-muted">Barangay Transaction Management System</h3></li>
+            <% if current_user %>
+							<li class = "social pull-right" style = "margin-right:  2%; margin-top: 1%;">
+								<table>
+									<tr>
+										<td class="welcome text-muted">Welcome, <%= current_user.username %>!</td>
+										<td>&emsp;|&emsp;</td>
+										<td><%= link_to 'Logout', log_out_path %></td>
+									</tr>
+								</table>
+							</li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    </td>
+  </tr>
+</table>

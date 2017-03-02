@@ -1,0 +1,22 @@
+	<%= form_tag sessions_path do %>
+		<div class="container" align="center" style="margin-top: 5%;">
+			<h1>Barangay Transaction Management System</h1>
+			<h2>Log In</h2>
+			<form>
+				<div class="form-group">
+					<label for="username">Username:</label>
+					<%= text_field_tag :username, params[:username], placeholder: 'Username', class: "form-control input-sm", style: "width: 20%;" %>
+				</div>
+				<div class="form-group">
+					<label for="pwd">Password:</label>
+					<%= password_field_tag :password, params[:password], placeholder: 'Password', class: "form-control input-sm", style: "width: 20%;" %>
+				</div>
+				<div class="form-group">
+					<%= submit_tag "Log in", :class => 'btn btn-large btn-default' %>
+				</div>
+				<div class="form-group">
+					No account? <%= link_to('Sign up', sign_up_path, :class => 'btn btn-large btn-default')  %>
+				</div>
+			</form>
+		</div>
+	<% end %>

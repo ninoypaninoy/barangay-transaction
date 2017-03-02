@@ -1,0 +1,41 @@
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <div class="error_messages" align="center">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @user.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="container" align="center" style="margin-top: 5%;">
+    <h1>Barangay Transaction Management System</h1>
+    <h2>Sign Up</h2>
+    <form>
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <%= f.text_field :username, placeholder: 'Username', class: "form-control input-sm", style: "width: 20%;" %>
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <%= f.password_field :password, placeholder: 'Password', class: "form-control input-sm", style: "width: 20%;" %>
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password confirmation:</label>
+        <%= f.password_field :password, placeholder: 'Password', class: "form-control input-sm", style: "width: 20%;" %>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox"> Remember me</label>
+      </div>
+      <%= f.submit 'Sign Up', :class => 'btn btn-large btn-default' %>
+      <%= link_to('Log In', log_in_path, :class => 'btn btn-large btn-default')  %>
+    </form>
+  </div>
+
+
+
+
+
+
+<% end %>
