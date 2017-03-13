@@ -8,6 +8,7 @@ class RequestsController < ApplicationController
   end
 
   def index
+    @request = Request.new
     @request = Request.all
     @user = session[:username]
   end

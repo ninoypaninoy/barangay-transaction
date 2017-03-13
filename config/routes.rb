@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get 'requests/transaction_view/:id' => 'requests#transaction_view'
 
   get 'requests/form' => 'requests#form'
-
+ 
   post 'requests/transactions' => 'requests#add_transaction'
 
   get "log_out" => "sessions#destroy", :as => "log_out"

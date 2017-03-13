@@ -22,8 +22,15 @@
 					Reminder
 				</div>
 				<div class="panel-body">
-					Blah... Blah...
+					<% @request.each do |request| %>
+						<%= request.reminder %>
+					<% end %>
 				</div>
+
+						<%= fields_for :requests do |s| %>
+							<%= s.text_area :reminder, placeholder: 'Reminder', class: "form-control inpput-sm" %>
+							<%= s.submit 'Submit', class: "btn btn-default" %>
+						<% end %>
 			</div>
 		</div>
 	</div>
