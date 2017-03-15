@@ -2,3 +2,44 @@
 @import "bootstrap";
 @import 'bootstrap-datetimepicker';
 //*=require fullcalendar
+
+td{
+  font-size: 8pt;
+}
+
+.c{
+  text-align: center;
+}
+
+.row.no-gutter [class*='col-'] {
+  padding-right:0;
+  padding-left:0;
+}
+
+.row.no-gutter .thumbnail {
+  margin-bottom: 0;
+  padding: 0;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.left-side .middle .right-side{
+    float: none;
+    display: table-cell;
+}
+
+body, html, .container-fluid {
+     height: 100%;
+}
+
+.thumb{
+  height: 150px;
+}
+
+.h{
+  height: 75px;
+}
+
+.t{
+  height: 37.5px;
+}

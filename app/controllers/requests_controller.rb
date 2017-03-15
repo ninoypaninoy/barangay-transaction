@@ -1,6 +1,6 @@
 class RequestsController < ApplicationController
   def form
-    @request = Request.new
+    @request = Request.new()
   end
 
   def view
@@ -13,41 +13,19 @@ class RequestsController < ApplicationController
     @user = session[:username]
   end
 
-  def edit_officials
-    @requests = Request.find(params[:id])
-  end
-
-  def officials
+  def transactions
     @request = Request.all
   end
 
-  def officials_view
+  def cedula_view
     @requests = Request.find(params[:id])
   end
 
-  def update
+  def transaction_view
+    @requests = Request.all
     @request = Request.find(params[:id])
-    @request.update_attributes(request_params)
-    redirect_to "/requests/officials_view/#{@request.id}"
   end
 
-  def new_official
-    @request = Request.new()
-  end
-
-  def add_official
-    @request = Request.new()
-    @request.first_name = params[:request][:first_name]
-    @request.middle_name = params[:request][:middle_name]
-    @request.last_name = params[:request][:last_name]
-    @request.position = params[:request][:position]
-    @request.save
-    redirect_to "/requests/officials_view/#{@request.id}"
-  end
-
-  def form
-    @request = Request.new()
-  end
 
   def add_transaction
     @request = Request.new()
@@ -71,17 +49,21 @@ class RequestsController < ApplicationController
     @request.contact_no_2 = params[:request][:contact_no_2]
     @request.save
 
-    redirect_to "/requests/transactions/#{@request.id}"
+    redirect_to "/requests/#{@request.id}/transaction_view/"
   end
 
   def delete
     @requests = Request.find(params[:id])
     @requests.destroy
-    redirect_to '/requests/officials/'
+    redirect_to "/requests/transactions/"
   end
 
   private
+    def set_transactions
+      @request = Request.find(params[:id])
+    end
+
     def request_params
-        params.require(:request).permit(:first_name, :middle_name, :last_name, :position)
+        params.require(:request).permit(:request, :first_name, :middle_name, :last_name, :nickname)
     end
 end

@@ -1,0 +1,33 @@
+<%= render "navbar" %>
+<div class="container-fluid" align="center" style="margin-top: 5%;">
+  <h1>Barangay Official List</h1>
+
+<div class="container" align="center">
+  <div class="row">
+    <div class="col-md-4">
+      <div><h4>Name of Officials</h4></div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2"><h4>Position</h4></div>
+    <div class="col-md-4"></div>
+  </div>
+
+  <div class="row">
+    <% @officials.each do |official| %>
+    <div class="col-md-2"><%= official.official_first_name %></div>
+    <div class="col-md-2"><%= official.official_middle_name %></div>
+    <div class="col-md-2"><%= official.official_last_name %></div>
+    <div class="col-md-2"><%= official.official_position %></div>
+    <div class="col-md-4">
+      <%= link_to 'Show', official, :class => 'btn btn-large btn-default' %>
+      <%= link_to 'Edit', edit_official_path(official), :class => 'btn btn-large btn-default' %>
+      <%= link_to 'Destroy', official, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-large btn-default' %>
+    </div>
+    <% end %>
+    </div>
+  </div>
+  <br>
+
+  <%= link_to 'Add', new_official_path, :class => 'btn btn-large btn-default' %>
+  <%= render "footer" %>
+</div>

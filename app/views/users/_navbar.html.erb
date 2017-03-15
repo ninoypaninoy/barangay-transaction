@@ -5,8 +5,8 @@
       	<div class="container-fluid">
         	<ul class="nav navbar-nav navbar-fixed-top">
           	<li class="<%= 'active' if params[:action] == 'requests' %>"><%= link_to "HOME", "/requests.html" %></li>
-          	<li class="<%= 'active' if params[:action] == 'officials' %>"><%= link_to "OFFICIALS", "/requests/officials" %></li>
-          	<li class="<%= 'active' if params[:action] == 'transactions' %>"><%= link_to "TRANSACTIONS", "" %></li>
+          	<li class="<%= 'active' if params[:action] == 'officials' %>"><%= link_to "OFFICIALS", "/officials" %></li>
+          	<li class="<%= 'active' if params[:action] == 'transactions' %>"><%= link_to "TRANSACTIONS", "/requests/transactions" %></li>
             <li class="<%= 'active' if params[:action] == 'programs' %>"><%= link_to "PROGRAMS", "" %></li>
             <li class="<%= 'active' if params[:action] == 'activities' %>"><%= link_to "ACTIVITIES", "" %></li>
             <li><h3 class="text-muted">Barangay Transaction Management System</h3></li>

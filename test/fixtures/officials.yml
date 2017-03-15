@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  official_first_name: MyString
+  official_middle_name: MyString
+  official_last_name: MyString
+  official_position: MyString
+
+two:
+  official_first_name: MyString
+  official_middle_name: MyString
+  official_last_name: MyString
+  official_position: MyString

@@ -1,0 +1,26 @@
+<%= render "navbar" %>
+<%= render "footer" %>
+<div class="container-fluid" align="center" style="margin-top: 5%; margin-left:5%;">
+  <p>
+    <strong>First name:</strong>
+    <%= @official.official_first_name %>
+  </p>
+
+  <p>
+    <strong>Middle name:</strong>
+    <%= @official.official_middle_name %>
+  </p>
+
+  <p>
+    <strong>Last name:</strong>
+    <%= @official.official_last_name %>
+  </p>
+
+  <p>
+    <strong>Position:</strong>
+    <%= @official.official_position %>
+  </p>
+
+  <%= link_to 'Edit', edit_official_path(@official), :class => 'btn btn-large btn-default' %>
+  <%= link_to 'Back', officials_path, :class => 'btn btn-large btn-default' %>
+</div>

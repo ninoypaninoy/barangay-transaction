@@ -1,0 +1,46 @@
+<%= render "navbar" %>
+<%= render "footer" %>
+
+<%= form_for(official) do |f| %>
+  <% if official.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(official.errors.count, "error") %> prohibited this official from being saved:</h2>
+
+      <ul>
+      <% official.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="container-fluid" align="center">
+    <h2>Adding officials...</h2>
+    <table>
+      <%= form_for(@official) do |f| %>
+        <tr>
+          <td>First Name: </td>
+          <td><%= f.text_field :official_first_name, class: "form-control input-sm" %></td>
+        </tr>
+        <tr>
+          <td>Middle Name: </td>
+          <td><%= f.text_field :official_middle_name, class: "form-control input-sm" %></td>
+        </tr>
+        <tr>
+          <td>Last Name: </td>
+          <td><%= f.text_field :official_last_name, class: "form-control input-sm" %></td>
+        </tr>
+        <tr>
+          <td>Position: </td>
+          <td><%= f.text_field :official_position, class: "form-control input-sm" %></td>
+        </tr>
+
+        <tr>
+      	   <td></td>
+      	    <td><%= f.submit 'Add', :class => 'btn btn-large btn-default' %></td>
+          </tr>
+      <% end %>
+    </table>
+  </div>
+<% end %>

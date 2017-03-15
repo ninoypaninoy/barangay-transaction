@@ -1,20 +1,38 @@
 <%= render "navbar" %>
-<p>
-	<strong>First Name: </strong>
-	<%= request.first_name %>
-</p>
-
-<p>
-	<strong>Middle Name: </strong>
-	<%= @requests.middle_name %>
-</p>
-
-<p>
-	<strong>Last Name: </strong>
-	<%= @requests.last_name %>
-</p>
-
-<p>
-	<strong>Owner: </strong>
-	<%= @requests.bhouse_owner %>
-</p>
+<div class="container" align="center" style="margin-top: 5%;">
+  <h1> Transaction Information </h1>
+  <table class="table table-bordered">
+    <tr>
+      <td><strong>Request: </strong><br><%= @request.request %></td>
+      <td><strong>First Name: </strong><br><%= @request.first_name %></td>
+      <td><strong>Middle Name: </strong><br><%= @request.middle_name %></td>
+      <td><strong>Last Name: </strong><br><%= @request.last_name %></td>
+    </tr>
+    <tr>
+      <td><strong>Nickname: </strong><br><%= @request.nickname %></td>
+      <td colspan="3"><strong>Nickname: </strong><br><%= @request.address %></td>
+    </tr>
+    <tr>
+      <td><strong>Contact No.: </strong><br><%= @request.contact_no %></td>
+      <td><strong>Gender: </strong><br><%= @request.gender %></td>
+      <td><strong>Status: </strong><br><%= @request.status %></td>
+      <td><strong>Birthday: </strong><br><%= @request.birthday %></td>
+    </tr>
+    <tr>
+      <td><strong>Birth Place: </strong><br><%= @request.birth_place %></td>
+      <td><strong>Occupation: </strong><br><%= @request.occupation %></td>
+      <td><strong>Monthly Income: </strong><br><%=@request.monthly_income %></td>
+      <td><strong>Purpose: </strong><br><%= @request.purpose %></td>
+    </tr>
+    <tr>
+      <td colspan="4"><strong>In case of emergency: </strong></td>
+    </tr>
+    <tr>
+      <td><strong>Contact Person: </strong><br><%= @request.emergency_contact_person %></td>
+      <td><strong>Relationship: </strong><br><%=@request.relationship %></td>
+      <td><strong>Contact Number: </strong><br><%= @request.contact_no_2 %></td>
+      <td></td>
+    </tr>
+  </table>
+  <%= link_to 'Back', "/requests/transactions", :class => 'btn btn-large btn-default pull-right' %>
+</div>

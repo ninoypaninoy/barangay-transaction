@@ -2,21 +2,21 @@
 
 <div class="container-fliud" style="margin-top: 5%; margin-left: 2%; margin-right: 2%;">
 	<div class="row">
-		<div class="col-sm-3">
+		<div class="col-md-3">
 			<div class="panel panel-default">
 				<div class="panel-body" align="center">
 					<%= link_to 'New transaction', "/requests/form", class: "btn btn-default" %>
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-6">
+		<div class="col-md-6">
 			<div class="panel panel-default">
 				<div class="panel-body" align="center">
 						<h3>Calendar of Activities</h3>
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-md-3">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					Reminder
@@ -28,7 +28,7 @@
 				</div>
 
 						<%= fields_for :requests do |s| %>
-							<%= s.text_area :reminder, placeholder: 'Reminder', class: "form-control inpput-sm" %>
+							<%= s.text_area :reminder, placeholder: 'Reminder', class: "form-control inpput-md" %>
 							<%= s.submit 'Submit', class: "btn btn-default" %>
 						<% end %>
 			</div>
