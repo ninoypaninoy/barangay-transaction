@@ -8,11 +8,15 @@ Rails.application.routes.draw do
 
   get 'requests/:id/transaction_view' => 'requests#transaction_view'
 
+  post 'requests/:id/transaction_view' => 'requests#generate_cert'
+
   delete 'requests/:id' => 'requests#delete'
 
   post 'requests' => 'requests#add_transaction'
 
   get 'requests/:id/cedula_view' => 'requests#cedula_view'
+
+  #post 'requests/:id/cedula_view' => 'requests#generate_cert'
 
   get 'requests/form' => 'requests#form'
 

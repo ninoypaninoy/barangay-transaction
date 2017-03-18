@@ -35,6 +35,21 @@ class CreateRequests < ActiveRecord::Migration[5.0]
       t.string :emergency_contact_person
       t.string :relationship
       t.integer :contact_no_2
+      t.string :place_issue
+      t.integer :cci2010
+      t.string :citizenship
+      t.decimal :height
+      t.decimal :weight
+      t.decimal :basic_tax
+      t.decimal :additional_tax
+      t.decimal :salary
+      t.decimal :salary_tax
+      t.decimal :interest
+      t.decimal :total_amount
+      t.decimal :position
+      t.decimal :reminder
+      t.decimal :birthday
+
 
       t.timestamps
     end

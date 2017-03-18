@@ -47,9 +47,41 @@ class RequestsController < ApplicationController
     @request.emergency_contact_person = params[:request][:emergency_contact_person]
     @request.relationship = params[:request][:relationship]
     @request.contact_no_2 = params[:request][:contact_no_2]
+    @request.birthday = params[:request][:birthday]
+    @request.place_issue = ""
+    @request.cci2010 = ""
+    @request.citizenship = ""
+    @request.height = ""
+    @request.weight = ""
+    @request.basic_tax = ""
+    @request.additional_tax = ""
+    @request.salary = ""
+    @request.interest = ""
+    @request.total_amount = ""
+    @request.position = ""
+    @request.reminder = ""
+    @request.birthday = ""
     @request.save
-
     redirect_to "/requests/#{@request.id}/transaction_view/"
+  end
+
+  def generate_cert
+    @request = Request.find(params[:id])
+    @request.place_issue = params[:request][:place_issue]
+    @request.cci2010 = params[:request][:cci2010]
+    @request.citizenship = params[:request][:citizenship]
+    @request.height = params[:request][:height]
+    @request.weight = params[:request][:weight]
+    @request.basic_tax = params[:request][:basic_tax]
+    @request.additional_tax = params[:request][:additional_tax]
+    @request.salary = params[:request][:salary]
+    @request.interest = params[:request][:interest]
+    @request.total_amount = params[:request][:total_amount]
+    @request.position = params[:request][:position]
+    @request.reminder = params[:request][:reminder]
+    @request.birthday = params[:request][:birthday]
+    @request.update_attributes(params[:id])
+    redirect_to "/requests/#{@request.id}/cedula_view/"
   end
 
   def delete
