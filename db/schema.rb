@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170320071756) do
+ActiveRecord::Schema.define(version: 20170320153632) do
 
   create_table "officials", force: :cascade do |t|
     t.string   "official_first_name"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(version: 20170320071756) do
     t.string   "official_position"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+  end
+
+  create_table "reminders", force: :cascade do |t|
+    t.string   "reminder_title"
+    t.string   "reminder_content"
+    t.date     "reminder_due"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "requests", force: :cascade do |t|

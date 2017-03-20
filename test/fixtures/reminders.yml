@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reminder_title: MyString
+  reminder_content: MyString
+  reminder_due: 2017-03-20
+
+two:
+  reminder_title: MyString
+  reminder_content: MyString
+  reminder_due: 2017-03-20

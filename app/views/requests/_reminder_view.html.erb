@@ -1,6 +1,5 @@
-
-  <% @request.each do |w| %>
+  <% @reminders.each do |w| %>
     <div class="container-fluid">
-      <%= w.reminder %>
+      <%= w.reminder_title %>
     </div>
   <% end %>

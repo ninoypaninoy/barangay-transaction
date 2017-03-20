@@ -13,6 +13,8 @@ class RequestsController < ApplicationController
 
   def index
     @request = Request.new
+    @reminders = Reminder.all
+    @reminder = Reminder.new
     @request = Request.all
     @user = session[:username]
   end
@@ -63,7 +65,7 @@ class RequestsController < ApplicationController
       redirect_to "/requests/form"
     end
   end
-
+#saen controller idto? si view? idto nagdisiplay kan mga bago reminder... mayo man to dgdi sa controller...pigrender ko lang ito
   def generate_cert
     @request = Request.find(params[:id_cert])
     @request.update({:place_issue => params[:place_issue], :citizenship => params[:citizenship], :height => params[:height], :weight => params[:weight], :basic_tax => params[:basic_tax], :additional_tax => params[:additional_tax], :reminder => params[:reminder]})
@@ -75,9 +77,22 @@ class RequestsController < ApplicationController
   end
 
   def reminder_def
-    @request = Request.new(reminder_params)
-    @request.save
-    redirect_to "/requests"
+    @reminder = Reminder.new
+    @reminder.reminder_title = params[:reminder][:reminder_title]
+    @reminder.reminder_content = params[:reminder][:reminder_content]
+    @reminder.reminder_due = params[:reminder][:reminder_due]
+    if @reminder.save then
+      redirect_to "/requests"
+    end
+  end
+
+  def delete_reminder
+    @reminders = Reminder.find(params[:id])
+    if @reminders.destroy then
+      redirect_to "/requests"
+    else
+      redirect_to "/requests/officials"
+    end
   end
 
   def delete
@@ -92,7 +107,7 @@ class RequestsController < ApplicationController
     end
 
     def reminder_params
-      params.permit(:reminder)
+      params.require(:request).permit(:reminder)
     end
 
     def request_params

@@ -21,13 +21,26 @@
 			  <div class="panel-heading">
 			    Reminder
 			  </div>
-			  <div class="panel-body">
-					<% @request.each do |w| %>
-						<div class="container-fluid">
-							<%= w.reminder %>
+			  <div class="panel-body" align="justify" style="overflow-y: scroll; max-height: 300px; width: auto;">
+					<% @reminders.each do |w| %>
+						<div class="well">
+							<table style="width: 280px;">
+								<tr>
+									<td><strong><%= w.reminder_title %></strong></td>
+									<td><%= link_to '', { action: :delete_reminder, id: w.id },method: :delete_reminder, data: { confirm: "Are you sure?" }, class: "glyphicon glyphicon-remove" %></td>
+								</tr>
+								<tr>
+									<td><%= w.reminder_content %></td>
+								</tr>
+								<tr>
+									<td><%= w.reminder_due %></td>
+								</tr>
+							</table>
 						</div>
 					<% end %>
-			  </div><%= render "reminder_form" %></div>
+			  </div>
+				<%= render "reminder_form" %>
+			</div>
 		</div>
 	</div>
 </div>

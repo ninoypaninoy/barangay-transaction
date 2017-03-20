@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   post '/reminder_def' => 'requests#reminder_def'
 
+  post 'reminders/' => 'requests#delete_reminder'
+
   delete 'requests/:id' => 'requests#delete'
 
   post 'requests' => 'requests#add_transaction'
