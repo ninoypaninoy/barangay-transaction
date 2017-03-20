@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(allowed_params)
     if @user.save
-      redirect_to 'requests', :notice => "Signed up!"
+      redirect_to '/requests', :notice => "Signed up!"
     else
       render "new"
     end

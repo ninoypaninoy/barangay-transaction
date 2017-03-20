@@ -3,6 +3,10 @@ class RequestsController < ApplicationController
     @request = Request.new()
   end
 
+  def edit_transactions
+    @request = Request.find(params[:id])
+  end
+
   def view
       @requests = Request.all
   end
@@ -19,6 +23,11 @@ class RequestsController < ApplicationController
 
   def cedula_view
     @requests = Request.find(params[:id])
+  end
+
+  def good_moral_view
+    @request = Request.find(params[:id])
+    @official = Official.where(official_position: "Barangay Captain")
   end
 
   def transaction_view
@@ -40,6 +49,7 @@ class RequestsController < ApplicationController
     @request.contact_no = params[:request][:contact_no]
     @request.gender = params[:request][:gender]
     @request.status = params[:request][:status]
+    @request.birthday = params[:request][:birthday]
     @request.birth_place = params[:request][:birth_place]
     @request.occupation = params[:request][:occupation]
     @request.monthly_income = params[:request][:monthly_income]
@@ -47,41 +57,27 @@ class RequestsController < ApplicationController
     @request.emergency_contact_person = params[:request][:emergency_contact_person]
     @request.relationship = params[:request][:relationship]
     @request.contact_no_2 = params[:request][:contact_no_2]
-    @request.birthday = params[:request][:birthday]
-    @request.place_issue = ""
-    @request.cci2010 = ""
-    @request.citizenship = ""
-    @request.height = ""
-    @request.weight = ""
-    @request.basic_tax = ""
-    @request.additional_tax = ""
-    @request.salary = ""
-    @request.interest = ""
-    @request.total_amount = ""
-    @request.position = ""
-    @request.reminder = ""
-    @request.birthday = ""
-    @request.save
-    redirect_to "/requests/#{@request.id}/transaction_view/"
+    if @request.save
+      redirect_to "/requests/#{@request.id}/transaction_view/"
+    else
+      redirect_to "/requests/form"
+    end
   end
 
   def generate_cert
-    @request = Request.find(params[:id])
-    @request.place_issue = params[:request][:place_issue]
-    @request.cci2010 = params[:request][:cci2010]
-    @request.citizenship = params[:request][:citizenship]
-    @request.height = params[:request][:height]
-    @request.weight = params[:request][:weight]
-    @request.basic_tax = params[:request][:basic_tax]
-    @request.additional_tax = params[:request][:additional_tax]
-    @request.salary = params[:request][:salary]
-    @request.interest = params[:request][:interest]
-    @request.total_amount = params[:request][:total_amount]
-    @request.position = params[:request][:position]
-    @request.reminder = params[:request][:reminder]
-    @request.birthday = params[:request][:birthday]
-    @request.update_attributes(params[:id])
-    redirect_to "/requests/#{@request.id}/cedula_view/"
+    @request = Request.find(params[:id_cert])
+    @request.update({:place_issue => params[:place_issue], :citizenship => params[:citizenship], :height => params[:height], :weight => params[:weight], :basic_tax => params[:basic_tax], :additional_tax => params[:additional_tax], :reminder => params[:reminder]})
+    if session[:request_type] == "Cedula" then
+      redirect_to "/requests/#{@request.id}/cedula_view/"
+    elsif session[:request_type] == "Good moral"
+      redirect_to "/requests/#{@request.id}/good_moral_view/"
+    end
+  end
+
+  def reminder_def
+    @request = Request.new(reminder_params)
+    @request.save
+    redirect_to "/requests"
   end
 
   def delete
@@ -95,7 +91,11 @@ class RequestsController < ApplicationController
       @request = Request.find(params[:id])
     end
 
+    def reminder_params
+      params.permit(:reminder)
+    end
+
     def request_params
-        params.require(:request).permit(:request, :first_name, :middle_name, :last_name, :nickname)
+        params.require(:request).permit(:request, :first_name, :middle_name, :last_name, :nickname, :residence_type, :transient_since, :bhouse_owner, :address, :contact_no, :gender, :status, :height, :weight, :occupation, :monthly_income, :purpose, :emergency_contact_person, :relationship, :contact_no_2, :birthday, :reminder )
     end
 end

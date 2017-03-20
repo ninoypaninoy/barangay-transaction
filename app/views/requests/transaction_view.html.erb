@@ -1,5 +1,6 @@
 <%= render "navbar" %>
 <div class="container" align="center" style="margin-top: 5%;">
+  <% session[:request_type] = @request.request%>
   <h1> Transaction Information </h1>
   <table class="table table-bordered">
     <tr>
@@ -21,7 +22,7 @@
     <tr>
       <td><strong>Birth Place: </strong><br><%= @request.birth_place %></td>
       <td><strong>Occupation: </strong><br><%= @request.occupation %></td>
-      <td><strong>Monthly Income: </strong><br><%=@request.monthly_income %></td>
+      <td><strong>Monthly Income: </strong><br><%= sprintf "%0.2f", @request.monthly_income %></td>
       <td><strong>Purpose: </strong><br><%= @request.purpose %></td>
     </tr>
     <tr>
@@ -50,17 +51,7 @@
           <h4 class="modal-title">Additional Information</h4>
         </div>
         <div class="modal-body">
-          <%= form_for(@request) do |i| %>
-          <table>
-            <tr><td>Place of Issue: <%= i.text_field :place_issue, placeholder: 'Place of Issue', class: "form-control input-md" %></td></tr>
-            <tr><td>Citizenship: <%= i.text_field :citizenship, placeholder: 'Citizenship', class: "form-control input-md" %></td></tr>
-            <tr><td>Height: <%= i.text_field :height, placeholder: 'Height', class: "form-control input-md" %></td></tr>
-            <tr><td>Weight: <%= i.text_field :weight, placeholder: 'Weight', class: "form-control input-md" %></td></tr>
-            <tr><td>Basic Tax: <%= i.text_field :basic_tax, placeholder: 'Bastic Tax', class: "form-control input-md" %></td></tr>
-            <tr><td>Additional Tax: <%= i.text_field :additional_tax, placeholder: 'Additional Tax', class: "form-control input-md" %></td></tr>
-            <tr><td><%= i.submit 'Generate', class: "btn btn-default" %></td></tr>
-          </table>
-          <% end %>
+          <%= render "update" %>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Close</button>

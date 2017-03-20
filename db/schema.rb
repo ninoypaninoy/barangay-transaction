@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315062241) do
+ActiveRecord::Schema.define(version: 20170320071756) do
 
   create_table "officials", force: :cascade do |t|
     t.string   "official_first_name"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20170315062241) do
     t.integer  "transient_since"
     t.string   "bhouse_owner"
     t.string   "address"
-    t.integer  "contact_no"
+    t.string   "contact_no"
     t.string   "gender"
     t.string   "status"
     t.string   "birth_month"
@@ -55,12 +55,16 @@ ActiveRecord::Schema.define(version: 20170315062241) do
     t.string   "purpose"
     t.string   "emergency_contact_person"
     t.string   "relationship"
-    t.integer  "contact_no_2"
+    t.string   "contact_no_2"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.string   "position"
-    t.string   "reminder"
+    t.string   "place_issue"
+    t.string   "citizenship"
+    t.decimal  "basic_tax"
+    t.decimal  "additional_tax"
     t.date     "birthday"
+    t.string   "reminder"
   end
 
   create_table "users", force: :cascade do |t|

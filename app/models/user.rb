@@ -1,5 +1,10 @@
 class User < ActiveRecord::Base
-  #attr_accessible :username, :password, :password_confirmation
+  validates :username, presence: true
+  validates :username, format: {with: /[0-9a-zA-Z]/}
+  validates :username , length: {minimum: 4, maximum: 12, :message => "must be between 4 to 12 characters"}
+  validates :password, presence: true
+  validates :password, format: {with: /[0-9a-zA-Z]/}
+  validates :password , length: {minimum: 4, maximum: 12, :message => "must be between 4 to 12 characters"}
 
   attr_accessor :password
   before_save :encrypt_password
@@ -25,4 +30,3 @@ class User < ActiveRecord::Base
     end
   end
 end
- 

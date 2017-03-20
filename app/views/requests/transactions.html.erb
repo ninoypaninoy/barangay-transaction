@@ -5,7 +5,7 @@
   <h1>List of Transactions</h1>
   <div class="container" align="center">
     <div class="row">
-      <div class="col-md-3"><strong>Transaction</strong></div>
+      <div class="col-md-2"><strong>Transaction</strong></div>
       <div class="col-md-3"><strong>First Name</strong></div>
       <div class="col-md-2"><strong>Middle Name</strong></div>
       <div class="col-md-2"><strong>Last Name</strong></div>
@@ -14,10 +14,11 @@
     </div>
     <div class="row">
       <% @request.each do |t| %>
-        <div class="col-md-3"><%= t.request %></div>
+        <div class="col-md-2"><%= t.request %></div>
         <div class="col-md-3"><%= t.first_name %></div>
         <div class="col-md-2"><%= t.middle_name %></div>
         <div class="col-md-2"><%= t.last_name %></div>
+        <div class="col-md-1"><%= link_to 'Edit', "/requests/#{t.id}/edit_transactions", :class => 'btn btn-large btn-default' %></div>
         <div class="col-md-1"><%= link_to 'Destroy', "/requests/#{t.id}", method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-large btn-default' %></div>
         <div class="col-md-1"><%= link_to 'Show', "/requests/#{t.id}/transaction_view", :class => 'btn btn-large btn-default' %></div>
       <% end %>

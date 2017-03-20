@@ -19,11 +19,11 @@
         <div class="row">
           <div class="col-md-2"></div>
           <div class="col-md-10">
-            Request for: <%= r.radio_button :request, 'Good moral' %> good moral
-                         <%= r.radio_button :request, 'Residency' %> residency
-                         <%= r.radio_button :request, 'Loan app.' %> loan app.
-                         <%= r.radio_button :request, 'Indigency' %> indigency
-                         <%= r.radio_button :request, 'Cedula' %> cedula
+            Request for: <%= r.radio_button :request, 'Good moral' %> Good moral
+                         <%= r.radio_button :request, 'Residency' %> Residency
+                         <%= r.radio_button :request, 'Loan app.' %> Loan application
+                         <%= r.radio_button :request, 'Indigency' %> Indigency
+                         <%= r.radio_button :request, 'Cedula' %> Cedula
           </div>
         </div>
       </td>
@@ -71,7 +71,7 @@
         <div class="row">
           <div class="col-md-2"></div>
           <div class="col-md-2"><br>Birthday: </div>
-          <div class="col-md-5"><br><%= r.date_select :birthday,class: "form-control input-md", start_year: 1950, :order => [:day, :month, :year] %></div>
+          <div class="col-md-5"><br><%= r.date_select :birthday, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 18, end_year: Date.today.year - 100}, {required: true} %></div>
         </div>
       </td>
     </tr>

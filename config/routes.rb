@@ -8,13 +8,21 @@ Rails.application.routes.draw do
 
   get 'requests/:id/transaction_view' => 'requests#transaction_view'
 
-  post 'requests/:id/transaction_view' => 'requests#generate_cert'
+  get 'requests/:id/edit_transactions' => 'requests#edit_transactions'
+
+  post '/generate_cert' => 'requests#generate_cert'
+
+  post '/reminder_def' => 'requests#reminder_def'
 
   delete 'requests/:id' => 'requests#delete'
 
   post 'requests' => 'requests#add_transaction'
 
   get 'requests/:id/cedula_view' => 'requests#cedula_view'
+
+  get 'requests/:id/good_moral_view' => 'requests#good_moral_view'
+
+  post 'generate_gm' => 'requests#generate_gm'
 
   #post 'requests/:id/cedula_view' => 'requests#generate_cert'
 

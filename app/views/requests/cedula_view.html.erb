@@ -3,7 +3,7 @@
 	<script>
 		function myPrint(){
 			window.print();
-		}
+		} 
 	</script>
 	<div class="row">
 			<div class="col-md-6 pull-left">BIR FORM 0016 (MARCH, 2000)</div>
@@ -14,11 +14,11 @@
     <tr>
       <td class="c" colspan="2"><strong>COMMUNITY TAX CERTIFICATE</strong></td>
       <td class="c"><strong>INDIVIDUAL</strong></td>
-      <td><strong>CCI2010: </strong></td>
+      <td><strong>CCI2010: </strong><%= rand(100000..999999) %></td>
     </tr>
     <tr>
       <td><strong>Year: </strong><%= Time.current.year %></td>
-      <td><strong>Place of Issue(City/Mun./Prov.): </strong></td>
+      <td><strong>Place of Issue(City/Mun./Prov.): </strong><%= @requests.place_issue %></td>
       <td><strong>Date Issued: </strong><%= Time.current.month %>/<%= Time.current.day %>/<%= Time.current.year %></td>
       <td><strong>Taxpayer's Copy</strong></td>
     </tr>
@@ -31,7 +31,7 @@
       <td><strong>Gender: </strong><%= @requests.gender %></td>
     </tr>
     <tr>
-      <td><strong>Citizenship: </strong></td>
+      <td><strong>Citizenship: </strong><%= @requests.citizenship %></td>
       <td><strong>ICR No.(If an Alien): </strong></td>
       <td><strong>Birth Place: </strong><%= @requests.birth_place %></td>
       <td><strong>Height: </strong><%= @requests.height %></td>
@@ -49,7 +49,7 @@
     <tr>
       <td colspan="2"><strong>A. BASIC COMMUNITY TAX (P5.00) Voluntary or Exempted (P1.00)</strong></td>
       <td></td>
-      <td>P</td>
+      <td>P <%= sprintf "%0.2f", @requests.basic_tax %></td>
     </tr>
     <tr>
       <td colspan="2"><strong>B. ADDITIONAL COMMUNITY TAX (tax not ro exceed P5,000.00)</strong></td>
@@ -63,8 +63,8 @@
     </tr>
     <tr>
       <td colspan="2"><strong>2. Salaries or gross receipt or earnings derived from exercise of profession or pursuit of any occupation (P1.00 for every P1,000.00)</strong></td>
-      <td></td>
-      <td></td>
+      <td><%= sprintf "%0.2f", @requests.monthly_income %></td>
+      <td><%= sprintf "%0.2f", @requests.monthly_income.to_i/1000 %></td>
     </tr>
     <tr>
       <td colspan="2"><strong>3. Income from real property (P1.00 for every P1.000.00)</strong></td>
@@ -75,20 +75,22 @@
       <td class="c" rowspan="4"><strong>Right Thumb Print</strong></td>
       <td rowspan="2" style="padding-bottom:5%;"><strong>Taxpayer's Signature</strong></td>
       <td class="c"><strong>TOTAL</strong></td>
-      <td>P</td>
+      <td>P <%= sprintf "%0.2f", @requests.basic_tax+(@requests.monthly_income.to_i/1000) %></td>
     </tr>
     <tr>
       <td class="c"><strong>INTEREST<strong></td>
-      <td></td>
+      <td><%= sprintf "%0.2f", (@requests.basic_tax+(@requests.monthly_income.to_i/1000)*0.06) %></td>
     </tr>
     <tr>
       <td class="c" style="padding-top:5%;" rowspan="2"><strong>_________________________<br>Municipal/City Treasurer</strong></td>
       <td class="c"><strong>TOTAL AMOUNT PAID</strong></td>
-      <td></td>
+      <td><%= sprintf "%0.2f", (@requests.basic_tax+(@requests.monthly_income.to_i/1000)*0.06)+(@requests.basic_tax+(@requests.monthly_income.to_i/1000)) %></td>
     </tr>
     <tr>
       <td colspan="2">(In words)</td>
     </tr>
   </table>
 	<div class="dop pull-left">DOP, 02.22.2013</div>
+
+
 </div>

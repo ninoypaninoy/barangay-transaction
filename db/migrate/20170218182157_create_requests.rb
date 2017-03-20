@@ -18,7 +18,7 @@ class CreateRequests < ActiveRecord::Migration[5.0]
       t.integer :transient_since
       t.string :bhouse_owner
       t.string :address
-      t.integer :contact_no
+      t.string :contact_no
       t.string :gender
       t.string :status
       t.string :birth_month
@@ -34,7 +34,7 @@ class CreateRequests < ActiveRecord::Migration[5.0]
       t.string :purpose
       t.string :emergency_contact_person
       t.string :relationship
-      t.integer :contact_no_2
+      t.string :contact_no_2
       t.string :place_issue
       t.integer :cci2010
       t.string :citizenship
@@ -46,10 +46,6 @@ class CreateRequests < ActiveRecord::Migration[5.0]
       t.decimal :salary_tax
       t.decimal :interest
       t.decimal :total_amount
-      t.decimal :position
-      t.decimal :reminder
-      t.decimal :birthday
-
 
       t.timestamps
     end

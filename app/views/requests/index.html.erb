@@ -12,26 +12,22 @@
 		<div class="col-md-6">
 			<div class="panel panel-default">
 				<div class="panel-body" align="center">
-						<h3>Calendar of Activities</h3>
+						Calendar of Activities
 				</div>
 			</div>
 		</div>
 		<div class="col-md-3">
 			<div class="panel panel-default">
-				<div class="panel-heading">
-					Reminder
-				</div>
-				<div class="panel-body">
-					<% @request.each do |request| %>
-						<%= request.reminder %>
+			  <div class="panel-heading">
+			    Reminder
+			  </div>
+			  <div class="panel-body">
+					<% @request.each do |w| %>
+						<div class="container-fluid">
+							<%= w.reminder %>
+						</div>
 					<% end %>
-				</div>
-
-						<%= fields_for :requests do |s| %>
-							<%= s.text_area :reminder, placeholder: 'Reminder', class: "form-control inpput-md" %>
-							<%= s.submit 'Submit', class: "btn btn-default" %>
-						<% end %>
-			</div>
+			  </div><%= render "reminder_form" %></div>
 		</div>
 	</div>
 </div>
