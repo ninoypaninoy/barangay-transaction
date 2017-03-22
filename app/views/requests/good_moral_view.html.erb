@@ -1,40 +1,53 @@
 <%= render "navbar" %>
 <%= render "footer" %>
-<div class="container" align="justify" style="margin-top: 5%; width: 30%; background-color: gray;">
-  <div>Republic of the Philippines</div>
-  <div><%= @request.place_issue %>, Camarines Sur</div>
-  <div><h3>Barangay Bagumbayan Sur</h3></div><br>
-  <div class="pull-left">To whom it may concern</div><br><br>
-  <div class="pull-left">&emsp;&emsp;&emsp;&emsp;&emsp;This is to certify that <%= @request.first_name %> <%= @request.middle_name %> <%= @request.last_name %> legal age, <%= @request.gender %>, <%= @request.status %> with residence and postal address at <%= @request.address %>.</div>
-  <div>&emsp;&emsp;&emsp;&emsp;&emsp;</div>
-  <div class="pull-left">&emsp;&emsp;&emsp;&emsp;&emsp;<%= @request.first_name %> <%= @request.middle_name %> <%= @request.last_name %> is known to me to be of a good moral character, a law abiding citizen and has no derogatory record on file.</div>
-  <div>&emsp;&emsp;&emsp;&emsp;&emsp;</div>
-  <div class="pull-left">&emsp;&emsp;&emsp;&emsp;&emsp;This certification is being issued upon the request of the above named person for <%= @request.purpose %> purpose it may serve.</div>
-  <div>&emsp;&emsp;&emsp;&emsp;&emsp;</div>
-  <br>
-  <table>
-    <thead style="text-align: center;">
-      <tr><td>Republic of the Philippines</td></tr>
-      <tr><td><%= @request.place_issue %>, Camarines Sur</td></tr>
-      <tr><td>Barangay Bagumbayan Sur</td></tr>
-      <tr><td></td></tr>
-    </thead>
-    <tbody class="pull-left">
-      <tr><td>To whom it may concern</td></tr>
-      <tr><td>&emsp;</td></tr>
-      <tr><td>&emsp;&emsp;&emsp;&emsp;&emsp;This is to certify that <%= @request.first_name %> <%= @request.middle_name %> <%= @request.last_name %> legal age, <%= @request.gender %>, <%= @request.status %> with residence and postal address at <%= @request.address %>.</td></tr>
-      <tr><td>&emsp;</td></tr>
-      <tr><td>&emsp;&emsp;&emsp;&emsp;&emsp;<%= @request.first_name %> <%= @request.middle_name %> <%= @request.last_name %> is known to me to be of a good moral character, a law abiding citizen and has no derogatory record on file.</td></tr>
-      <tr><td>&emsp;</td></tr>
-      <tr><td>&emsp;&emsp;&emsp;&emsp;&emsp;This certification is being issued upon the request of the above named person for <%= @request.purpose %> purpose it may serve.</td></tr>
-      <tr><td>&emsp;&emsp;&emsp;&emsp;&emsp;</td></tr>
-      <tr><td>&emsp;&emsp;&emsp;&emsp;&emsp;Issued this <%= Time.current.day %>th day of <%= Time.current.month %>, <%= Time.current.year %> at <%= @request.place_issue %>. </td></tr>
-      <tr><td>&emsp;&emsp;&emsp;&emsp;&emsp;</td></tr>
-      <tr><td>&emsp;&emsp;&emsp;&emsp;&emsp;</td></tr>
-      <tr><td><div class="pull-right" style="margin-right:5%;"><%= "#{@official[0].official_first_name} #{@official[0].official_middle_name} #{@official[0].official_last_name}" %></div></td></tr>
-      <tr><td><div class="pull-right" style="margin-right:5%;">Punong Barangay</div></td></tr>
-      <tr><td>&emsp;&emsp;&emsp;&emsp;&emsp;</td></tr>
-
-    </tbody>
-  </table>
+<script>
+  function myPrint(){
+    window.print();
+  }
+</script>
+<div class="container" align="center" style="margin-top:3%; width:52%;">
+  <button class="btn btn-default glyphicon glyphicon-print pull-right" onclick="myPrint()"></button>
 </div>
+<% if @request.request == "Good moral" || @request.request == "Residency" then %>
+  <div class="container-fluid well" align="justify" style="width: 50%; height:85%;">A
+    <div align="center">Republic of the Philippines</div>
+    <div align="center">Province of <%= @request.province %></div>
+    <div align="center"><%= @request.city_or_municipality %></div>
+    <div align="center"><strong><%= @request.barangay %></strong></div><br>
+    <div class="pull-left">To whom it may concern</div><br><br>
+    <div class="pull-left">&emsp;&emsp;&emsp;&emsp;&emsp;This is to certify that <strong><%= @request.first_name %> <%= @request.middle_name %> <%= @request.last_name %></strong> legal age, <strong><%= @request.gender %></strong>, <strong><%= @request.status %></strong> with residence and postal address at <strong><%= @request.address %></strong>.</div>
+    <div>&emsp;&emsp;&emsp;&emsp;&emsp;</div>
+    <div class="pull-left">&emsp;&emsp;&emsp;&emsp;&emsp;<strong><%= @request.first_name %> <%= @request.middle_name %> <%= @request.last_name %></strong> is known to me to be of a good moral character, a law abiding citizen and has no derogatory record on file.</div>
+    <div>&emsp;&emsp;&emsp;&emsp;&emsp;</div>
+    <div class="pull-left">&emsp;&emsp;&emsp;&emsp;&emsp;This certification is being issued upon the request of the above named person for <strong><%= @request.purpose %></strong> purpose it may serve.</div>
+    <div>&emsp;&emsp;&emsp;&emsp;&emsp;</div>
+    <br>
+    <div>&emsp;&emsp;&emsp;&emsp;&emsp;</div>
+    <div>&emsp;&emsp;&emsp;&emsp;&emsp;</div>
+    <div class="pull-right" style="margin-right:5%;"><%= "#{@official[0].official_first_name} #{@official[0].official_middle_name} #{@official[0].official_last_name}" %></div><br>
+    <div class="pull-right" style="margin-right:5%;">Punong Barangay</div>
+    <div>&emsp;&emsp;&emsp;&emsp;&emsp;</div>
+  </div>
+<% elsif @request.request == "Indigency" then %>
+  <div class="container-fluid well" align="justify" style="width: 50%; height:85%;">B
+    <div align="center">Republic of the Philippines</div>
+    <div align="center">Province of <%= @request.province %></div>
+    <div align="center"><%= @request.city_or_municipality %></div>
+    <div align="center"><strong><%= @request.barangay %></strong></div><br>
+    <div><h3><strong>Office of the Barangay Council</strong></h3></div><br><br>
+    <div><h1><strong></strong></h1></div><br><br>
+    <div class="pull-left">To whom it may concern</div><br><br>
+    <div class="pull-left">&emsp;&emsp;&emsp;&emsp;&emsp;This is to certify that <%= @request.first_name %> <%= @request.middle_name %> <%= @request.last_name %> legal age, <%= @request.gender %>, <%= @request.status %> is a bonfide resident of <%= "#{@request.barangay} #{@request.city_or_municipality} #{@request.province}" %>. The said person is of good moral character and an active member of the community. He/she is on of those who belong to a low-income family.</div>
+    <div>&emsp;&emsp;&emsp;&emsp;&emsp;</div>
+    <div class="pull-left">&emsp;&emsp;&emsp;&emsp;&emsp;This certification is being issued upon the request of the above named person for <%= @request.purpose %> purpose it may serve.</div>
+    <div>&emsp;&emsp;&emsp;&emsp;&emsp;</div>
+    <div class="pull-left">&emsp;&emsp;&emsp;&emsp;&emsp;Given this <%= Time.current.day %>, day of <%= "#{Time.current.month} #{Time.current.year}" %></div>
+    <div>&emsp;&emsp;&emsp;&emsp;&emsp;</div>
+    <br>
+    <div>&emsp;&emsp;&emsp;&emsp;&emsp;</div>
+    <div>&emsp;&emsp;&emsp;&emsp;&emsp;</div>
+    <div class="pull-right" style="margin-right:5%;"><%= "#{@official[0].official_first_name} #{@official[0].official_middle_name} #{@official[0].official_last_name}" %></div><br>
+    <div class="pull-right" style="margin-right:5%;">Punong Barangay</div>
+    <div>&emsp;&emsp;&emsp;&emsp;&emsp;</div>
+  </div>
+<% end %>

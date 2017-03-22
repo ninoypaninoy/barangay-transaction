@@ -1,5 +1,5 @@
 <%= render "navbar" %>
-<%= form_tag(requests_path) do  %>
+<%= form_tag("/update/#{@requests.id}") do  %>
 
 <div class="container" align="center" style="margin-top: 3%; margin-bottom:3%;">
 <table class="rform" align="center">
@@ -18,37 +18,14 @@
       <td>
         <div class="row">
           <div class="col-md-2"></div>
-          <div class="col-md-10">
-            Request for: <% if @request.request == "Good moral" then %>
-                           <%= radio_button_tag :request, 'Good moral', true, class: "" %> Good moral
-                          <% else %>
-                            <%= radio_button_tag :request, 'Good moral', false, class: ""  %> Good moral
-                          <% end %>
-
-                          <% if @request.request == "Residency" then %>
-                           <%= radio_button_tag :request, 'Residency', true, class: ""  %> Residency
-                          <% else %>
-                            <%= radio_button_tag :request, 'Residency', false, class: ""  %> Residency
-                          <% end %>
-
-                          <% if @request.request == "Loan app." then %>
-                           <%= radio_button_tag :request, 'Loan app.', true, class: ""  %> Loan application
-                          <% else %>
-                            <%= radio_button_tag :request, 'Loan app.', false, class: ""  %> Loan application
-                          <% end %>
-
-                          <% if @request.request == "Indigency" then %>
-                           <%= radio_button_tag :request, 'Indigency', true, class: ""  %> Indigency
-                          <% else %>
-                            <%= radio_button_tag :request, 'Indigency', false, class: ""  %> Indigency
-                          <% end %>
-
-                          <% if @request.request == "Cedula" then %>
-                           <%= radio_button_tag :request, 'Cedula', true, class: ""  %> Cedula
-                          <% else %>
-                            <%= radio_button_tag :request, 'Cedula', false, class: ""  %> Cedula
-                          <% end %>
-
+          <div class="col-md-3">
+            Request for:
+            <%= select_tag(:request, options_for_select([ "Good moral", "Residency", "Indigency", "Cedula" ], @requests.request), {:class => "form-control input-md"}) %>
+            <div style="color:red;">
+              <% @requests.errors[:request].each do |message| %>
+                *<%= message %>
+              <% end %>
+            </div>
           </div>
         </div>
       </td>
@@ -57,9 +34,30 @@
       <td>
         <div class="row">
           <div class="col-md-2"></div>
-          <div class="col-md-3"><br>First name: <%= text_field_tag :first_name, @request.first_name, placeholder: 'First Name', class: "form-control input-md" %></div>
-          <div class="col-md-3"><br>Middle name: <%= text_field_tag :middle_name, @request.middle_name, placeholder: 'Middle Name', class: "form-control input-md" %></div>
-          <div class="col-md-3"><br>Last name: <%= text_field_tag :last_name, @request.last_name, placeholder: 'Last Name', class: "form-control input-md" %></div>
+          <div class="col-md-3"><br>
+            First name:
+            <%= text_field_tag :first_name, @requests.first_name, placeholder: 'First Name', class: "form-control input-md" %></div>
+            <div style="color:red;">
+              <% @requests.errors[:first_name].each do |message| %>
+                *<%= message %>
+              <% end %>
+            </div>
+          <div class="col-md-3"><br>
+            Middle name:
+            <%= text_field_tag :middle_name, @requests.middle_name, placeholder: 'Middle Name', class: "form-control input-md" %></div>
+            <div style="color:red;">
+              <% @requests.errors[:middle_name].each do |message| %>
+                *<%= message %>
+              <% end %>
+            </div>
+          <div class="col-md-3"><br>
+            Last name:
+            <%= text_field_tag :last_name, @requests.last_name, placeholder: 'Last Name', class: "form-control input-md" %></div>
+            <div style="color:red;">
+              <% @requests.errors[:last_name].each do |message| %>
+                *<%= message %>
+              <% end %>
+            </div>
         </div>
       </td>
     </tr>
@@ -67,7 +65,7 @@
       <td>
         <div class="row">
           <div class="col-md-2"></div>
-          <div class="col-md-3"><br>Nickname: <%= text_field_tag :nickname, @request.nickname, placeholder: 'Nickname', class: "form-control input-md" %></div>
+          <div class="col-md-3"><br>Nickname: <%= text_field_tag :nickname, @requests.nickname, placeholder: 'Nickname', class: "form-control input-md" %></div>
         </div>
       </td>
     </tr>
@@ -75,7 +73,7 @@
       <td>
         <div class="row">
           <div class="col-md-2"></div>
-          <div class="col-md-7"><br>Current address:<%= text_field_tag :address, @request.address, placeholder: 'Address', class: "form-control input-md" %></div>
+          <div class="col-md-7"><br>Current address:<%= text_field_tag :address, @requests.address, placeholder: 'Address', class: "form-control input-md" %></div>
         </div>
       </td>
     </tr>
@@ -83,8 +81,8 @@
       <td>
         <div class="row">
           <div class="col-md-2"></div>
-          <div class="col-md-3"><br>Gender: <%= text_field_tag :gender, @request.gender, placeholder: 'Gender', class: "form-control input-md" %></div>
-          <div class="col-md-3"><br>Status: <%= text_field_tag :status, @request.status, placeholder: 'Status', class: "form-control input-md" %></div>
+          <div class="col-md-3"><br>Gender: <%= select_tag(:gender, options_for_select([ "Male", "Female"], @requests.gender), {:class => "form-control input-md"}) %></div>
+          <div class="col-md-3"><br>Status: <%= select_tag(:status, options_for_select([ "Single", "Married", "Widow" ], @requests.status), {:class => "form-control input-md"}) %></div>
         </div>
       </td>
     </tr>
@@ -102,7 +100,7 @@
         <div class="row">
           <div class="col-md-2"></div>
           <div class="col-md-3"><br>
-              Birth place: <%= text_field_tag :birth_place, @request.birth_place, placeholder: 'Birth place', class: "form-control input-md" %>
+              Birth place: <%= text_field_tag :birth_place, @requests.birth_place, placeholder: 'Birth place', class: "form-control input-md" %>
           </div>
         </div>
       </td>
@@ -111,9 +109,16 @@
       <td>
         <div class="row">
           <div class="col-md-2"></div>
-          <div class="col-md-3"><br>Occupation: <%= text_field_tag :occupation, @request.occupation, placeholder: 'Occupation', class: "form-control input-md" %></div>
-          <div class="col-md-3"><br>Monthly income: <%= text_field_tag :monthly_income, (sprintf "%0.2f", @request.monthly_income), placeholder: 'Monthly incaome', class: "form-control input-md" %></div>
-          <div class="col-md-3"><br>Purpose: <%= text_field_tag :purpose, @request.purpose, placeholder: 'Purpose', class: "form-control input-md" %></div>
+          <div class="col-md-3"><br>Occupation: <%= text_field_tag :occupation, @requests.occupation, placeholder: 'Occupation', class: "form-control input-md" %></div>
+          <div class="col-md-3"><br>Monthly income: <%= text_field_tag :monthly_income,
+              (
+                if @requests.monthly_income != nil then
+                    sprintf "%0.2f", @requests.monthly_income
+                else
+                    @requests.monthly_income
+                end
+              ), placeholder: 'Monthly incaome', class: "form-control input-md" %></div>
+          <div class="col-md-3"><br>Purpose: <%= text_field_tag :purpose, @requests.purpose, placeholder: 'Purpose', class: "form-control input-md" %></div>
         </div>
       </td>
     </tr>
@@ -130,9 +135,9 @@
     <tr>
       <td><div class="row">
         <div class="col-md-2"></div>
-        <div class="col-md-3"><br>Contact person: <%= text_field_tag :emergency_contact_person, @request.emergency_contact_person,  placeholder: 'Contact person', class: "form-control input-md" %></div>
-        <div class="col-md-3"><br>Relationship: <%= text_field_tag :relationship, @request.relationship, placeholder: 'Relationship', class: "form-control input-md" %></div>
-        <div class="col-md-3"><br>Contact number: <%= text_field_tag :contact_no_2, @request.contact_no_2, placeholder: 'Contact number', class: "form-control input-md" %></div>
+        <div class="col-md-3"><br>Contact person: <%= text_field_tag :emergency_contact_person, @requests.emergency_contact_person,  placeholder: 'Contact person', class: "form-control input-md" %></div>
+        <div class="col-md-3"><br>Relationship: <%= text_field_tag :relationship, @requests.relationship, placeholder: 'Relationship', class: "form-control input-md" %></div>
+        <div class="col-md-3"><br>Contact number: <%= text_field_tag :contact_no_2, @requests.contact_no_2, placeholder: 'Contact number', class: "form-control input-md" %></div>
       </div>
         </td>
     </tr>

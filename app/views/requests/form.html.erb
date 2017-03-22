@@ -1,6 +1,5 @@
 <%= render "navbar" %>
 <%= form_for(@request) do |r| %>
-
 <div class="container" align="center" style="margin-top: 3%; margin-bottom:3%;">
 <table class="rform" align="center">
   <thead class="rform">
@@ -18,12 +17,14 @@
       <td>
         <div class="row">
           <div class="col-md-2"></div>
-          <div class="col-md-10">
-            Request for: <%= r.radio_button :request, 'Good moral' %> Good moral
-                         <%= r.radio_button :request, 'Residency' %> Residency
-                         <%= r.radio_button :request, 'Loan app.' %> Loan application
-                         <%= r.radio_button :request, 'Indigency' %> Indigency
-                         <%= r.radio_button :request, 'Cedula' %> Cedula
+          <div class="col-md-3">
+            <%= 'Request for:' %>
+                <%= r.select :request, [['Good moral'],['Residency'],['Indigency'],['Cedula']], {placeholder: 'Select Rquest'},class: "form-control input-md" %>
+                <div style="color:red;">
+                  <% @request.errors[:request].each do |message| %>
+                    *<%= message %>
+                  <% end %>
+                </div>
           </div>
         </div>
       </td>
@@ -32,9 +33,27 @@
       <td>
         <div class="row">
           <div class="col-md-2"></div>
-          <div class="col-md-3"><br>First name: <%= r.text_field :first_name, placeholder: 'first name', class: "form-control input-md" %></div>
-          <div class="col-md-3"><br>Middle name: <%= r.text_field :middle_name, placeholder: 'middle name', class: "form-control input-md" %></div>
-          <div class="col-md-3"><br>Last name: <%= r.text_field :last_name, placeholder: 'last name', class: "form-control input-md" %></div>
+          <div class="col-md-3"><br>First name: <%= r.text_field :first_name, placeholder: 'first name', class: "form-control input-md" %>
+            <div style="color:red;">
+              <% @request.errors[:first_name].each do |message| %>
+                *<%= message %>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-md-3"><br>Middle name: <%= r.text_field :middle_name, placeholder: 'middle name', class: "form-control input-md" %>
+            <div style="color:red;">
+              <% @request.errors[:middle_name].each do |message| %>
+                *<%= message %>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-md-3"><br>Last name: <%= r.text_field :last_name, placeholder: 'last name', class: "form-control input-md" %>
+            <div style="color:red;">
+              <% @request.errors[:last_name].each do |message| %>
+                *<%= message %>
+              <% end %>
+            </div>
+          </div>
         </div>
       </td>
     </tr>
@@ -42,16 +61,29 @@
       <td>
         <div class="row">
           <div class="col-md-2"></div>
-          <div class="col-md-3"><br>Nickname: <%= r.text_field :nickname, placeholder: 'nickname', class: "form-control input-md" %></div>
+          <div class="col-md-3"><br>Nickname:
+            <%= r.text_field :nickname, placeholder: 'nickname', class: "form-control input-md" %>
+            <div style="color:red;">
+              <% @request.errors[:nickname].each do |message| %>
+                *<%= message %>
+              <% end %>
+            </div>
+          </div>
+
         </div>
       </td>
     </tr>
-    <tr>
+    <tr> 
       <td>
         <div class="row">
           <div class="col-md-2"></div>
           <div class="col-md-7"><br>Current address:
             <%= r.text_field :address, placeholder: 'address', class: "form-control input-md" %>
+            <div style="color:red;">
+              <% @request.errors[:address].each do |message| %>
+                *<%= message %>
+              <% end %>
+            </div>
           </div>
         </div>
       </td>
@@ -60,9 +92,30 @@
       <td>
         <div class="row">
           <div class="col-md-2"></div>
-          <div class="col-md-3"><br>Contact no: <%= r.text_field :contact_no, placeholder: 'contact number', class: "form-control input-md" %></div>
-          <div class="col-md-3"><br>Gender: <%= r.text_field :gender, placeholder: 'gender', class: "form-control input-md" %></div>
-          <div class="col-md-3"><br>Status: <%= r.text_field :status, placeholder: 'status', class: "form-control input-md" %></div>
+          <div class="col-md-3"><br>Contact no:
+              <%= r.text_field :contact_no, placeholder: 'contact number', class: "form-control input-md" %>
+              <div style="color:red;">
+                <% @request.errors[:contact_no].each do |message| %>
+                  *<%= message %>
+                <% end %>
+              </div>
+            </div>
+          <div class="col-md-3"><br>Gender:
+            <%= r.select :gender, [['Male'],['Female']], {}, class: "form-control input-md" %>
+            <div style="color:red;">
+              <% @request.errors[:gender].each do |message| %>
+                *<%= message %>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-md-3"><br>Status:
+            <%= r.select :status, [['Single'],['Married'],['Widow']], {}, class: "form-control input-md" %>
+            <div style="color:red;">
+              <% @request.errors[:status].each do |message| %>
+                *<%= message %>
+              <% end %>
+            </div>
+          </div>
         </div>
       </td>
     </tr>
@@ -73,6 +126,11 @@
           <div class="col-md-2"><br>Birthday: </div>
           <div class="col-md-5"><br>
             <%= r.date_select :birthday, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 18, end_year: Date.today.year - 100}, {required: true} %>
+            <div style="color:red;">
+              <% @request.errors[:birthday].each do |message| %>
+                *<%= message %>
+              <% end %>
+            </div>
           </div>
         </div>
       </td>
@@ -82,7 +140,13 @@
         <div class="row">
           <div class="col-md-2"></div>
           <div class="col-md-3"><br>
-              Birth place: <%= r.text_field :birth_place, placeholder: 'birth place', class: "form-control input-md" %>
+              Birth place:
+              <%= r.text_field :birth_place, placeholder: 'birth place', class: "form-control input-md" %>
+              <div style="color:red;">
+                <% @request.errors[:birth_place].each do |message| %>
+                  *<%= message %>
+                <% end %>
+              </div>
           </div>
         </div>
       </td>
@@ -91,9 +155,33 @@
       <td>
         <div class="row">
           <div class="col-md-2"></div>
-          <div class="col-md-3"><br>Occupation: <%= r.text_field :occupation, placeholder: 'occupation', class: "form-control input-md" %></div>
-          <div class="col-md-3"><br>Monthly income: <%= r.text_field :monthly_income, placeholder: 'monthly incaome', class: "form-control input-md" %></div>
-          <div class="col-md-3"><br>Purpose: <%= r.text_field :purpose, placeholder: 'purpose', class: "form-control input-md" %></div>
+          <div class="col-md-3"><br>
+            Occupation:
+            <%= r.text_field :occupation, placeholder: 'occupation', class: "form-control input-md" %>
+            <div style="color:red;">
+              <% @request.errors[:occupation].each do |message| %>
+                *<%= message %>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-md-3"><br>
+            Monthly income:
+            <%= r.text_field :monthly_income, placeholder: 'monthly incaome', class: "form-control input-md" %>
+            <div style="color:red;">
+              <% @request.errors[:monthly_income].each do |message| %>
+                *<%= message %>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-md-3"><br>
+            Purpose:
+            <%= r.text_field :purpose, placeholder: 'purpose', class: "form-control input-md" %>
+            <div style="color:red;">
+              <% @request.errors[:purpose].each do |message| %>
+                *<%= message %>
+              <% end %>
+            </div>
+          </div>
         </div>
       </td>
     </tr>
@@ -110,9 +198,33 @@
     <tr>
       <td><div class="row">
         <div class="col-md-2"></div>
-        <div class="col-md-3"><br>Contact person: <%= r.text_field :emergency_contact_person, placeholder: 'contact person', class: "form-control input-md" %></div>
-        <div class="col-md-3"><br>Relationship: <%= r.text_field :relationship, placeholder: 'relationship', class: "form-control input-md" %></div>
-        <div class="col-md-3"><br>Contact number: <%= r.text_field :contact_no_2, placeholder: 'contact number', class: "form-control input-md" %></div>
+        <div class="col-md-3"><br>
+          Contact person:
+          <%= r.text_field :emergency_contact_person, placeholder: 'contact person', class: "form-control input-md" %>
+          <div style="color:red;">
+            <% @request.errors[:emergency_contact_person].each do |message| %>
+              *<%= message %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-3"><br>
+          Relationship:
+          <%= r.text_field :relationship, placeholder: 'relationship', class: "form-control input-md" %>
+          <div style="color:red;">
+            <% @request.errors[:relationship].each do |message| %>
+              *<%= message %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-3"><br>
+          Contact number:
+          <%= r.text_field :contact_no_2, placeholder: 'contact number', class: "form-control input-md" %>
+          <div style="color:red;">
+            <% @request.errors[:contact_no_2].each do |message| %>
+              *<%= message %>
+            <% end %>
+          </div>
+        </div>
       </div>
         </td>
     </tr>

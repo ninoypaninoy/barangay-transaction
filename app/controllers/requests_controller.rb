@@ -4,9 +4,32 @@ class RequestsController < ApplicationController
   end
 
   def edit_transactions
-    @request = Request.find(params[:id])
+    @requests = Request.find(params[:id])
+
   end
 
+  def update_record
+    @request = Request.find(params[:id])
+    session[:test] = params[:id]
+    if @request.update_attributes(:first_name => params[:first_name]) &&
+    @request.update_attributes(:request => params[:request]) &&
+    @request.update_attributes(:middle_name => params[:middle_name]) &&
+    @request.update_attributes(:last_name => params[:last_name]) &&
+    @request.update_attributes(:status => params[:status]) &&
+    @request.update_attributes(:birthday => params[:birthday]) &&
+    @request.update_attributes(:birth_place => params[:birth_place]) &&
+    @request.update_attributes(:occupation => params[:occupation]) &&
+    @request.update_attributes(:monthly_income => params[:monthly_income]) &&
+    @request.update_attributes(:relationship => params[:relationship]) &&
+    @request.update_attributes(:contact_no_2 => params[:contact_no_2]) then
+    #@request.update({:request => params[:request], :first_name => params[:first_name], :middle_name => params[:middle_name], :last_name => params[:last_name], :nickname => params[:nickname], :address => params[:address], :contact_no => params[:contact_no], :gender => params[:gender],
+    #       :status => params[:status], :birthday => params[:birthday], :birth_place => params[:birth_place], :occupation => params[:occupation], :monthly_income => params[:monthly_income], :purpose => params[:purpose], :emergency_contact_person => params[:emergency_contact_person],
+    #       :relationship => params[:relationship], :contact_no_2 => params[:contact_no_2], })
+      redirect_to "/requests/#{@request.id}/transaction_view"
+    else
+      redirect_to "/requests/#{@request.id}/edit_transactions"
+    end
+  end
   def view
       @requests = Request.all
   end
@@ -34,7 +57,7 @@ class RequestsController < ApplicationController
 
   def transaction_view
     @requests = Request.all
-    @request = Request.find(params[:id])
+    @request = Request.find(session[:test])
   end
 
 
@@ -62,16 +85,16 @@ class RequestsController < ApplicationController
     if @request.save
       redirect_to "/requests/#{@request.id}/transaction_view/"
     else
-      redirect_to "/requests/form"
+      render "form"
     end
   end
-#saen controller idto? si view? idto nagdisiplay kan mga bago reminder... mayo man to dgdi sa controller...pigrender ko lang ito
+
   def generate_cert
     @request = Request.find(params[:id_cert])
-    @request.update({:place_issue => params[:place_issue], :citizenship => params[:citizenship], :height => params[:height], :weight => params[:weight], :basic_tax => params[:basic_tax], :additional_tax => params[:additional_tax], :reminder => params[:reminder]})
+    @request.update({:place_issue => params[:place_issue], :province => params[:province], :city_or_municipality => params[:city_or_municipality], :barangay => params[:barangay], :citizenship => params[:citizenship], :height => params[:height], :weight => params[:weight], :basic_tax => params[:basic_tax], :additional_tax => params[:additional_tax]})
     if session[:request_type] == "Cedula" then
       redirect_to "/requests/#{@request.id}/cedula_view/"
-    elsif session[:request_type] == "Good moral"
+    elsif session[:request_type] == "Good moral" || session[:request_type] == "Indigency"
       redirect_to "/requests/#{@request.id}/good_moral_view/"
     end
   end
@@ -111,6 +134,6 @@ class RequestsController < ApplicationController
     end
 
     def request_params
-        params.require(:request).permit(:request, :first_name, :middle_name, :last_name, :nickname, :residence_type, :transient_since, :bhouse_owner, :address, :contact_no, :gender, :status, :height, :weight, :occupation, :monthly_income, :purpose, :emergency_contact_person, :relationship, :contact_no_2, :birthday, :reminder )
+        params.require(:request).permit(:request, :first_name, :middle_name, :last_name, :nickname, :residence_type, :transient_since, :bhouse_owner, :address, :contact_no, :gender, :status, :height, :weight, :occupation, :monthly_income, :purpose, :emergency_contact_person, :relationship, :contact_no_2, :birthday )
     end
 end

@@ -1,4 +1,5 @@
 <%= render "navbar" %>
+
 <div class="container" align="center" style="margin-top: 5%;">
   <% session[:request_type] = @request.request%>
   <h1> Transaction Information </h1>
@@ -11,7 +12,7 @@
     </tr>
     <tr>
       <td><strong>Nickname: </strong><br><%= @request.nickname %></td>
-      <td colspan="3"><strong>Nickname: </strong><br><%= @request.address %></td>
+      <td colspan="3"><strong>Address: </strong><br><%= @request.address %></td>
     </tr>
     <tr>
       <td><strong>Contact No.: </strong><br><%= @request.contact_no %></td>

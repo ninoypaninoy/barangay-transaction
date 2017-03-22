@@ -14,19 +14,20 @@ Rails.application.routes.draw do
 
   post '/reminder_def' => 'requests#reminder_def'
 
+  post '/edit_transactions' => 'requests#edit_transactions'
+
   post 'reminders/' => 'requests#delete_reminder'
 
   delete 'requests/:id' => 'requests#delete'
 
   post 'requests' => 'requests#add_transaction'
+  post '/update/:id' => 'requests#update_record'
 
   get 'requests/:id/cedula_view' => 'requests#cedula_view'
 
   get 'requests/:id/good_moral_view' => 'requests#good_moral_view'
 
   post 'generate_gm' => 'requests#generate_gm'
-
-  #post 'requests/:id/cedula_view' => 'requests#generate_cert'
 
   get 'requests/form' => 'requests#form'
 

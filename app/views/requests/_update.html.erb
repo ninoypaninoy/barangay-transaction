@@ -2,13 +2,15 @@
 
 <table>
   <%= hidden_field_tag :id_cert, @request.id  %>
-  <tr><td>Place of Issue: <%= text_field_tag :place_issue, @request.place_issue, placeholder: 'Place of Issue', class: "form-control input-md" %></td></tr>
+  <tr><td>Place of Issue: </td></tr>
+  <tr><td>Province: <%= text_field_tag :province, @request.province, placeholder: 'Province', class: "form-control input-md" %></td></tr>
+  <tr><td>City/Municipality: <%= text_field_tag :city_or_municipality, @request.city_or_municipality, placeholder: 'City/Municipality', class: "form-control input-md" %></td></tr>
+  <tr><td>Barangay: <%= text_field_tag :barangay, @request.barangay, placeholder: 'Barangay', class: "form-control input-md" %></td></tr>
   <tr><td>Citizenship: <%= text_field_tag :citizenship, @request.citizenship, placeholder: 'Citizenship', class: "form-control input-md" %></td></tr>
   <tr><td>Height: <%= text_field_tag :height, @request.height, placeholder: 'Height', class: "form-control input-md" %></td></tr>
   <tr><td>Weight: <%= text_field_tag :weight, @request.weight, placeholder: 'Weight', class: "form-control input-md" %></td></tr>
   <tr><td>Basic Tax: <%= text_field_tag :basic_tax, @request.basic_tax, placeholder: 'Bastic Tax', class: "form-control input-md" %></td></tr>
   <tr><td>Additional Tax: <%= text_field_tag :additional_tax, @request.additional_tax, placeholder: 'Additional Tax', class: "form-control input-md" %></td></tr>
-  <tr><td>Reminder: <%= text_area_tag :reminder, @request.reminder, placeholder: 'Reminder', class: "form-control input-md" %></td></tr>
   <tr><td><%= submit_tag 'Generate', class: "btn btn-default" %></td></tr>
 </table>
 <% end %>

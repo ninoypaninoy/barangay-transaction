@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170320153632) do
+ActiveRecord::Schema.define(version: 20170321055006) do
 
   create_table "officials", force: :cascade do |t|
     t.string   "official_first_name"
@@ -73,6 +73,10 @@ ActiveRecord::Schema.define(version: 20170320153632) do
     t.decimal  "additional_tax"
     t.date     "birthday"
     t.string   "reminder"
+    t.string   "province_or_city"
+    t.string   "province"
+    t.string   "city_or_municipality"
+    t.string   "barangay"
   end
 
   create_table "users", force: :cascade do |t|

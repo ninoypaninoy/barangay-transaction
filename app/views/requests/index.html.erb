@@ -1,11 +1,18 @@
 <%= render "navbar" %>
-
+ 
 <div class="container-fliud" style="margin-top: 5%; margin-left: 2%; margin-right: 2%;">
 	<div class="row">
 		<div class="col-md-3">
 			<div class="panel panel-default">
-				<div class="panel-body" align="center">
-					<%= link_to 'New transaction', "/requests/form", class: "btn btn-default" %>
+				<div class="panel-body" align="justify">
+					<div class="dropdown">
+				    <div class="btn btn-default dropdown-toggle container-fluid" style="width:50%;" type="button" data-toggle="dropdown">New Transaction
+				    <span class="caret"></span></div>
+				    <ul class="dropdown-menu" style="margin-top: 1px; margin-bottom: 1px; padding: 0px; width: 20px;">
+				      <li><%= link_to 'Request Certificate', "/requests/form", class: "btn btn-default" %></li>
+				      <li><%= link_to 'Business Clearance', "/requests/form", class: "btn btn-default" %></li>
+				    </ul>
+				  </div>
 				</div>
 			</div>
 		</div>

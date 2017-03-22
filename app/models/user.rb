@@ -1,18 +1,16 @@
 class User < ActiveRecord::Base
-  validates :username, presence: true
-  validates :username, format: {with: /[0-9a-zA-Z]/}
-  validates :username , length: {minimum: 4, maximum: 12, :message => "must be between 4 to 12 characters"}
-  validates :password, presence: true
-  validates :password, format: {with: /[0-9a-zA-Z]/}
-  validates :password , length: {minimum: 4, maximum: 12, :message => "must be between 4 to 12 characters"}
+  validates :username, presence: true, format: {with: /[0-9a-zA-Z]/}, length: {minimum: 4, maximum: 12}
+  validates_uniqueness_of :username
+  validates_presence_of :password, :on => :create
+  validates :password, format: {with: /[0-9a-zA-Z]/}, length: {minimum: 4, maximum: 12}
+  validates_confirmation_of :password
+
+
 
   attr_accessor :password
   before_save :encrypt_password
 
-  validates_confirmation_of :password
-  validates_presence_of :password, :on => :create
-  validates_presence_of :username
-  validates_uniqueness_of :username
+
 
   def self.authenticate(username, password)
     user = find_by_username(username)

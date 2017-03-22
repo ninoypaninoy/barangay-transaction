@@ -1,28 +1,27 @@
 class Request < ApplicationRecord
   validates :request, presence: true
-  validates :request, format: {with: /[a-zA-Z]/}
 
-  validates :first_name, presence: true
-  validates :first_name, format: {with: /[a-zA-Z]/}
+  validates :first_name, presence: true, format: { with: /\A[a-zA-Z ]+\z/,
+    message: "only allows letters" }
 
-  validates :middle_name, presence: true
-  validates :middle_name, format: {with: /[a-zA-Z.]/}
+  validates :middle_name, presence: true, format: { with: /\A[a-zA-Z\. ]+\z/ }
 
-  validates :last_name, presence: true
-  validates :last_name, format: {with: /[a-zA-Z]/}
+  validates :last_name, presence: true, format: { with: /\A[a-zA-Z ]+\z/,
+    message: "only allows letters" }
 
-  validates :nickname, presence: true
-  validates :nickname, format: {with: /[a-zA-Z]/}
+  validates :nickname, presence: true, format: { with: /\A[a-zA-Z ]+\z/,
+    message: "only allows letters" }
 
-  validates :address, presence: true
-  validates :address, format:{with: /[-#., a-zA-Z0-9]/}
+  validates :address, presence: true, format:{with:  /\A[a-zA-Z\-\#\.\, ]+\z/}
 
   validates :contact_no, presence: true
   validates :contact_no, length: {minimum: 4, maximum: 12, :message => "must be 4-12 characters"}
-  validates :contact_no, format: {with: /[(\+639|639|09)[0-9]{9}]|4[0-9]{2}-[0-9]{4}/}
+  validates :contact_no, format: {with: /\A(?:\+?\d{1,3}\s*-?)?\(?(?:\d{3})?\)?[- ]?\d{3}[- ]?\d{4}\z/}
 
   validates :gender, presence: true
   validates :gender, format: {with: /[(M|m|Fem|fem|FEM|FeM|feM|fEm)(ale|[a-zA-Z]{3})]/}
+
+  validates :status, presence: true
 
   validates :birth_place, presence: true
   validates :birth_place,  format:{with: /[-#., a-zA-Z0-9]/}
