@@ -1,6 +1,5 @@
 <%= form_for @reminder, :url => {:action => "reminder_def"} do  |f| %>
   <%= f.text_field :reminder_title, placeholder: 'Title', class: "form-control inpput-md" %>
   <%= f.text_area :reminder_content, placeholder: 'Reminder', class: "form-control inpput-md" %>
-  <%= f.date_select :reminder_due, class: "form-control input-md" %>
   <%= f.submit 'Submit', class: "btn btn-default pull-right" %>
 <% end %>

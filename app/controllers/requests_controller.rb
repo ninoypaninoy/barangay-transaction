@@ -57,7 +57,7 @@ class RequestsController < ApplicationController
 
   def transaction_view
     @requests = Request.all
-    @request = Request.find(session[:test])
+    @request = Request.find(params[:id])
   end
 
 
@@ -74,7 +74,6 @@ class RequestsController < ApplicationController
     @request.contact_no = params[:request][:contact_no]
     @request.gender = params[:request][:gender]
     @request.status = params[:request][:status]
-    @request.birthday = params[:request][:birthday]
     @request.birth_place = params[:request][:birth_place]
     @request.occupation = params[:request][:occupation]
     @request.monthly_income = params[:request][:monthly_income]

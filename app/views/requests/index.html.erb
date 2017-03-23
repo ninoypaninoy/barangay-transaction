@@ -1,25 +1,21 @@
 <%= render "navbar" %>
- 
+
 <div class="container-fliud" style="margin-top: 5%; margin-left: 2%; margin-right: 2%;">
 	<div class="row">
 		<div class="col-md-3">
 			<div class="panel panel-default">
 				<div class="panel-body" align="justify">
-					<div class="dropdown">
-				    <div class="btn btn-default dropdown-toggle container-fluid" style="width:50%;" type="button" data-toggle="dropdown">New Transaction
-				    <span class="caret"></span></div>
-				    <ul class="dropdown-menu" style="margin-top: 1px; margin-bottom: 1px; padding: 0px; width: 20px;">
-				      <li><%= link_to 'Request Certificate', "/requests/form", class: "btn btn-default" %></li>
-				      <li><%= link_to 'Business Clearance', "/requests/form", class: "btn btn-default" %></li>
-				    </ul>
-				  </div>
+				    <%= link_to 'New Transaction', "/requests/form", class: "btn btn-default" %>
 				</div>
 			</div>
 		</div>
 		<div class="col-md-6">
 			<div class="panel panel-default">
 				<div class="panel-body" align="center">
-						Calendar of Activities
+						<strong><h1>Calendar of Activities</h1></strong>
+            <div>
+              <iframe src="https://calendar.google.com/calendar/embed?height=500&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Asia%2FManila" style="border-width:0" width="700" height="500" frameborder="0" scrolling="no"></iframe>
+            </div>
 				</div>
 			</div>
 		</div>
@@ -37,10 +33,7 @@
 									<td><%= link_to '', { action: :delete_reminder, id: w.id },method: :delete_reminder, data: { confirm: "Are you sure?" }, class: "glyphicon glyphicon-remove" %></td>
 								</tr>
 								<tr>
-									<td><%= w.reminder_content %></td>
-								</tr>
-								<tr>
-									<td><%= w.reminder_due %></td>
+									<td align="justify"><div align="justify"><%= w.reminder_content %></div></td>
 								</tr>
 							</table>
 						</div>

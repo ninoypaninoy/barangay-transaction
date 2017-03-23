@@ -3,13 +3,11 @@
     <td>
       <nav class="navbar navbar-inverse navbar-fixed-top " role="navigation">
       	<div class="container-fluid">
-        	<ul class="nav navbar-nav navbar-fixed-top">
+        	<ul class="nav navbar-nav navbar-fixed-top" align="center" style="height:0px;">
           	<li class="<%= 'active' if params[:action] == 'requests' %>"><%= link_to "HOME", "/requests.html" %></li>
-          	<li class="<%= 'active' if params[:action] == 'officials' %>"><%= link_to "OFFICIALS", "/officials" %></li>
-          	<li class="<%= 'active' if params[:action] == 'transactions' %>"><%= link_to "TRANSACTIONS", "/requests/transactions" %></li>
-            <li class="<%= 'active' if params[:action] == 'programs' %>"><%= link_to "PROGRAMS", "" %></li>
-            <li class="<%= 'active' if params[:action] == 'activities' %>"><%= link_to "ACTIVITIES", "" %></li>
-            <li><h3 class="text-muted">Barangay Transaction Management System</h3></li>
+          	<li class="<%= 'active' if params[:action] == 'officials' %>"><%= link_to "OFFICIALS", "/officials/" %></li>
+          	<li class="<%= 'active' if params[:action] == 'transactions' %>"><%= link_to "TRANSACTIONS", "/requests/transactions/" %></li>
+            <li style="margin-left:20%;"><h3 class="text-muted">Barangay Transaction Management System</h3></li>
             <% if current_user %>
 							<li class = "social pull-right" style = "margin-right:  2%; margin-top: 1%;">
 								<table>

@@ -73,7 +73,7 @@
         </div>
       </td>
     </tr>
-    <tr> 
+    <tr>
       <td>
         <div class="row">
           <div class="col-md-2"></div>
@@ -112,22 +112,6 @@
             <%= r.select :status, [['Single'],['Married'],['Widow']], {}, class: "form-control input-md" %>
             <div style="color:red;">
               <% @request.errors[:status].each do |message| %>
-                *<%= message %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="row">
-          <div class="col-md-2"></div>
-          <div class="col-md-2"><br>Birthday: </div>
-          <div class="col-md-5"><br>
-            <%= r.date_select :birthday, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 18, end_year: Date.today.year - 100}, {required: true} %>
-            <div style="color:red;">
-              <% @request.errors[:birthday].each do |message| %>
                 *<%= message %>
               <% end %>
             </div>

@@ -2,15 +2,16 @@ class Request < ApplicationRecord
   validates :request, presence: true
 
   validates :first_name, presence: true, format: { with: /\A[a-zA-Z ]+\z/,
-    message: "only allows letters" }
+    message: "only allows letters" }, length: {minimum: 4, maximum: 12}
 
-  validates :middle_name, presence: true, format: { with: /\A[a-zA-Z\. ]+\z/ }
+  validates :middle_name, presence: true, format: { with: /\A[a-zA-Z\. ]+\z/,
+    message: "no numbers allowed" }, length: {minimum: 4, maximum: 12}
 
   validates :last_name, presence: true, format: { with: /\A[a-zA-Z ]+\z/,
-    message: "only allows letters" }
+    message: "only allows letters" }, length: {minimum: 4, maximum: 12}
 
   validates :nickname, presence: true, format: { with: /\A[a-zA-Z ]+\z/,
-    message: "only allows letters" }
+    message: "only allows letters" }, length: {minimum: 4, maximum: 12}
 
   validates :address, presence: true, format:{with:  /\A[a-zA-Z\-\#\.\, ]+\z/}
 
