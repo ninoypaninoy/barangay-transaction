@@ -1,6 +1,6 @@
 # README
 
-#Barangay Transaction Management System
+## Barangay Transaction Management System
 
 ---
   ``` shell
